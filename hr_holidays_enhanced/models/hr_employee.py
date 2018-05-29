@@ -13,21 +13,18 @@ class HrEmployee(models.Model):
     )
     def _get_remaining_days(self):
         today = datetime.today().strftime('%Y-%m-%d')
-        hr_holidays_model = self.env['hr.holidays']
         for employee in self:
             remaining_days = 0.0
-            # on ne récupère que les 'allocations' fonction de la date courante
-            for allocation in self.holidays_ids.filtered(
+            for allocation in employee.holidays_ids.filtered(
                 lambda r: (
                     r.date_from <= today and r.date_to >= today and r.type == 'add'
                     and not r.holiday_status_id.limit
                 )
             ):
                 remaining_days += allocation.number_of_days_temp
-                # on récupère les congés posés pour l'allocation courante
                 for holiday in allocation.holidays_ids:
                     remaining_days -= holiday.number_of_days_temp
-            self.remaining_leaves = remaining_days
+            employee.remaining_leaves = remaining_days
 
     remaining_leaves = fields.Float(
         compute="_get_remaining_days", string='Remaining Legal Leaves', store=True,
