@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+        <!-- PARTNER -->
+        <record id="partner_fjouatte" model="res.partner">
+            <field name="name">fjouatte</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">fjouatte@example.com</field>
+        </record>
+
+        <!-- USER -->
+        <record id="user_fjouatte" model="res.users">
+            <field name="partner_id" ref="partner_fjouatte"/>
+            <field name="login">fjouatte</field>
+        </record>
+
+        <!-- EMPLOYEE -->
+        <record id="employee_fjouatte" model="hr.employee">
+            <field name="name">Administrator</field>
+            <field name="user_id" ref="user_fjouatte"/>
+        </record>
+
+        <!-- HOLIDAY STATUS -->
+        <record model="hr.holidays.status" id="holiday_status_cp">
+            <field name="name">CP</field>
+            <field name="color_name">black</field>
+        </record>
+
+    </data>
+</openerp>
