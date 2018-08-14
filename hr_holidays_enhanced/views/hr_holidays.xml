@@ -9,14 +9,27 @@
             <field name="arch" type="xml">
                 <xpath expr="//sheet/group/group/div/group" position="replace">
                     <group col="3">
-                        <field name="date_from" nolabel="1" on_change="onchange_date_from(date_to, date_from)" required="True" class="oe_inline"/><label string="-" class="oe_inline"/>
-                        <field name="date_to" nolabel="1" on_change="onchange_date_to(date_to, date_from)" required="True" class="oe_inline"/>
+                        <field name="date_from" nolabel="1" required="True" class="oe_inline"/><label string="-" class="oe_inline"/>
+                        <field name="date_to" nolabel="1" required="True" class="oe_inline"/>
                     </group>
                 </xpath>
                 <xpath expr="//sheet/group/group" position="inside">
                     <field name="is_current_allocation" invisible="True"/>
-                    <field name="allocation_id" attrs="{'required': [('type', '=', 'remove')], 'invisible': [('type', '=', 'add')]}" domain="[('is_current_allocation', '=', True), ('holiday_status_id', '=', holiday_status_id), ('user_id', '=', user_id)]"/>
+                    <field name="allocation_id" attrs="{'required': [('type', '=', 'remove')], 'invisible': [('type', '=', 'add')]}" domain="[('holiday_status_id', '=', holiday_status_id), ('employee_id', '=', employee_id), ('date_from', '&lt;=', date_from), ('date_to', '&gt;=', date_to)]"/>
                     <field name="holidays_ids" attrs="{'invisible': [('type', '=', 'remove')]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_holidays_enhanced_allocation_company_new" model="ir.ui.view">
+            <field name="name">Leaves Management</field>
+            <field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.allocation_company_new"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_from']" position="replace">
+                    <field name="date_from" attrs="{'readonly':[('type','=','add')], 'required':[('type','=','remove')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_to']" position="replace">
+                    <field name="date_to" attrs="{'readonly':[('type','=','add')], 'required':[('type','=','remove')]}"/>
                 </xpath>
             </field>
         </record>

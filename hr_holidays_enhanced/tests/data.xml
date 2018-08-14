@@ -1,0 +1,48 @@
+<openerp>
+    <data>
+        <!-- PARTNER -->
+        <record id="partner_fjouatte" model="res.partner">
+            <field name="name">fjouatte</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">fjouatte@example.com</field>
+        </record>
+        <record id="partner_fjouatte2" model="res.partner">
+            <field name="name">fjouatte2</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">fjouatte2@example.com</field>
+        </record>
+
+        <!-- USER -->
+        <record id="user_fjouatte" model="res.users">
+            <field name="partner_id" ref="partner_fjouatte"/>
+            <field name="login">fjouatte</field>
+        </record>
+        <record id="user_fjouatte2" model="res.users">
+            <field name="partner_id" ref="partner_fjouatte2"/>
+            <field name="login">fjouatte2</field>
+        </record>
+
+        <!-- EMPLOYEE -->
+        <record id="employee_fjouatte" model="hr.employee">
+            <field name="name">JOUATTE</field>
+            <field name="user_id" ref="user_fjouatte"/>
+        </record>
+        <record id="employee_fjouatte2" model="hr.employee">
+            <field name="name">JOUATTE2</field>
+            <field name="user_id" ref="user_fjouatte2"/>
+        </record>
+
+        <!-- HOLIDAY STATUS -->
+        <record model="hr.holidays.status" id="holiday_status_cp">
+            <field name="name">CP</field>
+            <field name="color_name">black</field>
+        </record>
+        <record model="hr.holidays.status" id="holiday_status_rtt">
+            <field name="name">RTT</field>
+            <field name="color_name">red</field>
+        </record>
+
+    </data>
+</openerp>
