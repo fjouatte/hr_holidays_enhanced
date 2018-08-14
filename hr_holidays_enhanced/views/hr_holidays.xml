@@ -15,7 +15,7 @@
                 </xpath>
                 <xpath expr="//sheet/group/group" position="inside">
                     <field name="is_current_allocation" invisible="True"/>
-                    <field name="allocation_id" attrs="{'required': [('type', '=', 'remove')], 'invisible': [('type', '=', 'add')]}" domain="[('is_current_allocation', '=', True), ('holiday_status_id', '=', holiday_status_id)]"/>
+                    <field name="allocation_id" attrs="{'required': [('type', '=', 'remove')], 'invisible': [('type', '=', 'add')]}" domain="[('is_current_allocation', '=', True), ('holiday_status_id', '=', holiday_status_id), ('user_id', '=', user_id)]"/>
                     <field name="holidays_ids" attrs="{'invisible': [('type', '=', 'remove')]}"/>
                 </xpath>
             </field>
