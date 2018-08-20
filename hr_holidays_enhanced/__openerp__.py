@@ -20,12 +20,12 @@
 ##############################################################################
 
 {
-    'name': 'Odoo Sentry connector',
+    'name': 'Hr Holidays Enhanced',
     'version': '1.0',
     'author': 'Florent Jouatte <fjouatte@anybox.fr>',
     'sequence': 4,
     'category': 'Extra Tools',
-    'summary': 'Better handle employee holidays',
+    'summary': 'Better handle employee holidays (France)',
     'description': "",
     'depends': ['base', 'hr_holidays'],
     'data': [

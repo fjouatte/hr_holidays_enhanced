@@ -57,7 +57,7 @@ class HrHolidays(models.Model):
 
         # No date_to set so far: automatically compute one 8 hours later
         if date_from and not date_to:
-            date_to_with_delta = datetime.datetime.strptime(
+            date_to_with_delta = datetime.strptime(
                 date_from, tools.DEFAULT_SERVER_DATETIME_FORMAT
             ) + timedelta(hours=8)
             self.date_to = str(date_to_with_delta)
